@@ -1,0 +1,9 @@
+numpy
+psutil
+torch
+sentence_transformers
+pandas
+openai==0.28
+python-dotenv
+pydantic
+seaborn

@@ -1,0 +1,13 @@
+{
+    "embedding_model_name": "bert-base-uncased",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "hidden_dims": [
+        128
+    ],
+    "dropout_rate": 0.2,
+    "epoch": 62,
+    "val_loss": 0.4507283552922845,
+    "val_acc": 0.8631123919308358
+}
