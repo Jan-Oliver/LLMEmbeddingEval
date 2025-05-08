@@ -1,0 +1,5 @@
+{
+    "name": "shibing624/text2vec-base-multilingual",
+    "type": "SentenceTransformerModel",
+    "dimension": 384
+}

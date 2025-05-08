@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embedding_dimension": 384,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 99,
+    "val_loss": 0.40792479320957853,
+    "val_acc": 0.8684684684684685,
+    "learning_rate": 0.0001
+}

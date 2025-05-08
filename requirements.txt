@@ -7,3 +7,4 @@ openai==0.28
 python-dotenv
 pydantic
 seaborn
+einops # For running nomic-ai/nomic-embed-text-v2-moe

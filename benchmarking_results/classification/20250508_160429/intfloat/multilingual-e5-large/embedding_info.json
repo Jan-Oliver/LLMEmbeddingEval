@@ -1,0 +1,5 @@
+{
+    "name": "intfloat/multilingual-e5-large",
+    "type": "SentenceTransformerModel",
+    "dimension": 1024
+}

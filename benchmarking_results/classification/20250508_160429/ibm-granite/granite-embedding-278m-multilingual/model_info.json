@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "ibm-granite/granite-embedding-278m-multilingual",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 128,
+    "val_loss": 0.4382857385787878,
+    "val_acc": 0.8436036036036036,
+    "learning_rate": 3.125e-06
+}

@@ -3,7 +3,7 @@
 # Common Benchmark Parameters
 BASE_RESULTS_FOLDER="benchmarking_results/classification/$(date +%Y%m%d_%H%M%S)" # Unique folder for this batch of runs
 BASE_DATASET_FOLDER="data"
-TARGET_DEVICE="cuda" # or "cpu" or "mps"
+TARGET_DEVICE="cpu" # or "cpu" or "mps"
 
 # Ensure Python's output is not buffered if run through a pipe or tee
 export PYTHONUNBUFFERED=1
@@ -32,10 +32,8 @@ declare -a model_configs=(
     "intfloat/multilingual-e5-small;true;query"
     "ibm-granite/granite-embedding-278m-multilingual;false;none"
     "ibm-granite/granite-embedding-107m-multilingual;false;none"
-    "Alibaba-NLP/gte-multilingual-base;true;none"
     "mixedbread-ai/deepset-mxbai-embed-de-large-v1;false;none"
     "nomic-ai/nomic-embed-text-v2-moe;false;none"
-    "Snowflake/snowflake-arctic-embed-l-v2.0;false;query"
     "shibing624/text2vec-base-multilingual;false;none"
 )
 

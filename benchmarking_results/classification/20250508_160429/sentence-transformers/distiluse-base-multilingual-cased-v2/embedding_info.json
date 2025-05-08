@@ -1,0 +1,5 @@
+{
+    "name": "sentence-transformers/distiluse-base-multilingual-cased-v2",
+    "type": "SentenceTransformerModel",
+    "dimension": 512
+}

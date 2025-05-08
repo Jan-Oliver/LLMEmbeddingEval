@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Common Benchmark Parameters
-NUM_SENTENCES=100_000 # Adjusted for potentially faster runs during testing, increase for full benchmarks
+NUM_SENTENCES=10_000 # Adjusted for potentially faster runs during testing, increase for full benchmarks
 # NUM_SENTENCES=10000 # Smaller for quick tests
 BATCH_SIZE=64
-TARGET_DEVICE="cuda" # or "cpu" or "mps"
-BASE_RESULTS_FOLDER="benchmarking_results/performance/${TARGET_DEVICE}/$(date +%Y%m%d_%H%M%S)"
+TARGET_DEVICE="cpu" # or "cpu" or "mps"
+BASE_RESULTS_FOLDER="benchmarking_results/performance/${TARGET_DEVICE}-m1-pro/$(date +%Y%m%d_%H%M%S)"
 TEST_SENTENCE="This benchmark evaluates the inference speed and memory footprint of various sentence embedding models when processing a large volume of repeated textual data on different hardware configurations."
 WARMUP_RUNS=256
 
@@ -39,10 +39,8 @@ declare -a model_configs=(
     "intfloat/multilingual-e5-small;true;query"
     "ibm-granite/granite-embedding-278m-multilingual;false;none"
     "ibm-granite/granite-embedding-107m-multilingual;false;none"
-    "Alibaba-NLP/gte-multilingual-base;true;none"
     "mixedbread-ai/deepset-mxbai-embed-de-large-v1;false;none"
     "nomic-ai/nomic-embed-text-v2-moe;false;none"
-    "Snowflake/snowflake-arctic-embed-l-v2.0;false;query"
     "shibing624/text2vec-base-multilingual;false;none"
 )
 
