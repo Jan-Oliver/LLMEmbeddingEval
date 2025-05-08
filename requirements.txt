@@ -1,7 +1,7 @@
 numpy
 psutil
 torch
-sentence_transformers
+sentence-transformers==4.1.0
 pandas
 openai==0.28
 python-dotenv

@@ -20,7 +20,8 @@ class TestService:
         self,
         embedding_model: AbstractEmbeddingModel,
         classifier: AbstractEmotionClassifier,
-        output_path: Optional[Path] = None
+        output_path: Optional[Path] = None,
+        device: str = "cpu"
     ):
         """
         Initialize the test service.
@@ -29,10 +30,12 @@ class TestService:
             embedding_model: Embedding model used for text representation
             classifier: Classifier instance for emotion prediction
             output_path: Path to save evaluation results and visualizations
+            device: Device to run the test on ('cpu' or 'cuda')
         """
         self.embedding_model = embedding_model
         self.classifier = classifier
         self.output_path = output_path
+        self.device = device
 
         # Ensure output directory exists if provided
         if output_path:
@@ -55,7 +58,7 @@ class TestService:
         embeddings = self.embedding_model.embed_texts(texts, batch_size=batch_size)
 
         # Convert to tensor
-        inputs = torch.tensor(embeddings, dtype=torch.float32)
+        inputs = torch.tensor(embeddings, dtype=torch.float32).to(self.device)
 
         print("Predicting emotions...")
         # Get predictions
@@ -115,7 +118,7 @@ class TestService:
         print("Predicting emotions using provided embeddings...")
 
         # Convert embeddings to tensor
-        inputs = torch.tensor(embeddings, dtype=torch.float32)
+        inputs = torch.tensor(embeddings, dtype=torch.float32).to(self.device)
 
         # Get predictions
         predicted_labels = self.classifier.predict(inputs)

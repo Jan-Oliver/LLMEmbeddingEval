@@ -1,0 +1,5 @@
+{
+    "name": "avsolatorio/GIST-small-Embedding-v0",
+    "type": "SentenceTransformerModel",
+    "dimension": 384
+}

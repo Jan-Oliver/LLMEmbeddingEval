@@ -1,4 +1,3 @@
-# models/embeddings/sentence_transformer_model.py
 from models.embedding.abstract_embedding_model import AbstractEmbeddingModel
 import numpy as np
 from typing import Callable, List, Dict, Any, Optional
@@ -11,21 +10,28 @@ class SentenceTransformerModel(AbstractEmbeddingModel):
     """Implementation of AbstractEmbeddingModel using SentenceTransformers."""
     
     def __init__(self, 
-                 model_name: str, 
-                 monitoring_service: MonitoringService, 
-                 normalize_embeddings: bool = False,
-                 prefix_function: Optional[Callable[[str], str]] = None):
+                model_name: str, 
+                monitoring_service: MonitoringService, 
+                normalize_embeddings: bool = False,
+                prefix_function: Optional[Callable[[str], str]] = None,
+                device: str = "cpu"
+                ):
         """
         Initialize the model.
         
         Args:
             model_name: Model name or path (e.g., 'all-MiniLM-L6-v2')
             language: Language supported by the model
+            normalize_embeddings: Whether to normalize the embeddings
+            prefix_function: Function to apply to the input text
+            device: Device to run the model on
         """
         self._name = model_name
         self._monitoring_service = monitoring_service
         self._normalize_embeddings = normalize_embeddings
         self._prefix_function = prefix_function
+        self._device = device
+        
     @property
     def name(self) -> str:
         return self._name
@@ -39,7 +45,7 @@ class SentenceTransformerModel(AbstractEmbeddingModel):
     def load_model(self) -> None:
         """Load the model into memory."""
         self._monitoring_service.start_model_load_monitoring()
-        self._model = SentenceTransformer(self._name)
+        self._model = SentenceTransformer(self._name, trust_remote_code=True, device=self._device)
         # Run a dummy forward pass to ensure the model is loaded
         self._model.eval()
         self._model.encode("Hello, world!", normalize_embeddings=self._normalize_embeddings)
@@ -56,7 +62,8 @@ class SentenceTransformerModel(AbstractEmbeddingModel):
             texts, 
             batch_size=batch_size, 
             show_progress_bar=True, 
-            normalize_embeddings=self._normalize_embeddings
+            normalize_embeddings=self._normalize_embeddings,
+            device=self._device
         )
         self._monitoring_service.stop_inference_monitoring()
         return embeddings
@@ -65,7 +72,8 @@ class SentenceTransformerModel(AbstractEmbeddingModel):
         """Generate embedding for a single text."""        
         return self._model.encode(
             text, 
-            normalize_embeddings=self._normalize_embeddings
+            normalize_embeddings=self._normalize_embeddings,
+            device=self._device
         ).numpy()
     
     def get_model_size(self) -> Dict[str, Any]:

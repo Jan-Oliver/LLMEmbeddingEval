@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "avsolatorio/GIST-small-Embedding-v0",
+    "embedding_dimension": 384,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 134,
+    "val_loss": 0.4423429937201206,
+    "val_acc": 0.850864553314121,
+    "learning_rate": 2.5e-05
+}

@@ -14,9 +14,9 @@ class SimpleEmotionClassifier(AbstractEmotionClassifier):
     def create(cls, 
                embedding_dimension: int, 
                num_classes: int, 
-               device: str = "cpu", 
                hidden_dims: list[int] = [128],
-               dropout_rate: float = 0.2
+               dropout_rate: float = 0.2,
+               device: str = "cpu"
             ) -> 'SimpleEmotionClassifier':
         """
         Factory method to create a classifier with standardized parameters.

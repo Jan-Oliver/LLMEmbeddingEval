@@ -5,9 +5,9 @@ NUM_SENTENCES=100_000 # Adjusted for potentially faster runs during testing, inc
 # NUM_SENTENCES=10000 # Smaller for quick tests
 BATCH_SIZE=64
 TARGET_DEVICE="cuda" # or "cpu" or "mps"
-BASE_RESULTS_FOLDER="benchmarking_results/performance/$(date +%Y%m%d_%H%M%S)" # Unique folder for this batch of runs
+BASE_RESULTS_FOLDER="benchmarking_results/performance/${TARGET_DEVICE}/$(date +%Y%m%d_%H%M%S)"
 TEST_SENTENCE="This benchmark evaluates the inference speed and memory footprint of various sentence embedding models when processing a large volume of repeated textual data on different hardware configurations."
-WARMUP_RUNS=256 # e.g., a few batches
+WARMUP_RUNS=256
 
 # Ensure Python's output is not buffered if run through a pipe or tee
 export PYTHONUNBUFFERED=1

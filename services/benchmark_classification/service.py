@@ -7,7 +7,6 @@ from pathlib import Path
 from sklearn.model_selection import train_test_split
 from data.abstract_dataset_provider import AbstractDatasetProvider
 from models.embedding.abstract_embedding_model import AbstractEmbeddingModel
-from models.embedding.huggingface_model import HuggingFaceModel
 from models.embedding.sentence_transformer_model import SentenceTransformerModel
 from models.classifier.abstract_emotion_classifier import AbstractEmotionClassifier
 from models.classifier.simple_emotion_classifier import SimpleEmotionClassifier
@@ -56,7 +55,8 @@ def run_classification_benchmark(
         normalize_embeddings: bool,
         prefix_function_name: str,
         base_results_folder: str,
-        base_dataset_folder: str
+        base_dataset_folder: str,
+        device: str
     ):
     
     logger.info(f"Starting benchmark for model: {model_name}")
@@ -158,7 +158,8 @@ def run_classification_benchmark(
         model_name=model_name, 
         monitoring_service=monitoring_service, 
         normalize_embeddings=normalize_embeddings,
-        prefix_function=PREFIX_FUNCTIONS[prefix_function_name]
+        prefix_function=PREFIX_FUNCTIONS[prefix_function_name],
+        device=device
     )
     
     embedding_model.load_model()
@@ -219,6 +220,7 @@ if __name__ == "__main__":
     parser.add_argument("--prefix-function-name", default="none", choices=PREFIX_FUNCTIONS.keys(), help="Name of the prefix function to use")
     parser.add_argument("--base-results-folder", default="results", help="Base folder to save results")
     parser.add_argument("--base-dataset-folder", default="data/datasets", help="Base folder to save datasets")
+    parser.add_argument("--device", default="cuda", choices=["cuda", "cpu", "mps"], help="Device to run the benchmark on")
 
     args = parser.parse_args()
     run_classification_benchmark(
@@ -226,5 +228,6 @@ if __name__ == "__main__":
         normalize_embeddings=args.normalize_embeddings,
         prefix_function_name=args.prefix_function_name,
         base_results_folder=args.base_results_folder,
-        base_dataset_folder=args.base_dataset_folder
+        base_dataset_folder=args.base_dataset_folder,
+        device=args.device
     )

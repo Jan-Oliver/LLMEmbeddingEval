@@ -1,5 +1,0 @@
-{
-    "name": "google-bert/bert-base-uncased",
-    "type": "SentenceTransformerModel",
-    "dimension": 768
-}

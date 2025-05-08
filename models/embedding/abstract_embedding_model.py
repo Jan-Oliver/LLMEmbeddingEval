@@ -1,7 +1,6 @@
-# models/embeddings/base_embedding_model.py
 from abc import ABC, abstractmethod
 import numpy as np
-from typing import List, Union, Dict, Any
+from typing import List, Dict, Any
 
 class AbstractEmbeddingModel(ABC):
     """Abstract base class for all embedding models."""

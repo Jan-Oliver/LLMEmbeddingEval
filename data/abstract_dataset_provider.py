@@ -31,14 +31,6 @@ class AbstractDatasetProvider(ABC):
         pass
     
     @abstractmethod
-    def _create_dataset(self) -> None:
-        """
-        Create the dataset.
-        This method is responsible for generating or downloading the dataset.
-        """
-        pass
-    
-    @abstractmethod
     def ensure_dataset(self) -> None:
         """
         Ensure the dataset exists, creating it if necessary.

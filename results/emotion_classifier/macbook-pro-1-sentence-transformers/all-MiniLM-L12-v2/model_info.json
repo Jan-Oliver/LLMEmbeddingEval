@@ -3,8 +3,8 @@
     "embedding_dimension": 384,
     "classifier_class": "SimpleEmotionClassifier",
     "num_classes": 5,
-    "epoch": 66,
-    "val_loss": 0.4629313175805364,
-    "val_acc": 0.8501440922190202,
+    "epoch": 65,
+    "val_loss": 0.46243766229331323,
+    "val_acc": 0.8537463976945245,
     "learning_rate": 0.0001
 }

@@ -2,7 +2,7 @@
 
 # Common Benchmark Parameters
 BASE_RESULTS_FOLDER="benchmarking_results/classification/$(date +%Y%m%d_%H%M%S)" # Unique folder for this batch of runs
-BASE_DATASET_FOLDER="data/datasets"
+BASE_DATASET_FOLDER="data"
 
 # Ensure Python's output is not buffered if run through a pipe or tee
 export PYTHONUNBUFFERED=1
@@ -55,7 +55,7 @@ for config in "${model_configs[@]}"; do
     # Add tee to log stdout/stderr to a file per model and also print to console
     log_file_path="$BASE_RESULTS_FOLDER/${model_name//\//_}_${prefix_name}.log"
 
-    python3 services/benchmark_classification/service.py \
+    python3 -m services.benchmark_classification.service \
         --model-name "$model_name" \
         $normalize_arg \
         --prefix-function-name "$prefix_name" \

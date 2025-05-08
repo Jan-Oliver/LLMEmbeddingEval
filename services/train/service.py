@@ -26,6 +26,7 @@ class TrainService:
         classifier_class: Type[AbstractEmotionClassifier],
         model_output_path: Path,
         num_classes: int = 6,
+        device: str = "cpu"
     ):
         """
         Initialize the training service.
@@ -35,12 +36,13 @@ class TrainService:
             classifier_class: Class to use for the emotion classifier
             num_classes: Number of emotion classes
             model_output_path: Path to save trained model
+            device: Device to train on ('cpu' or 'cuda')
         """
         self.embedding_model = embedding_model
         self.classifier_class = classifier_class
         self.num_classes = num_classes
         self.model_output_path = model_output_path
-
+        self.device = device
         # Ensure output directory exists
         if model_output_path:
             os.makedirs(model_output_path, exist_ok=True)
@@ -55,7 +57,6 @@ class TrainService:
         batch_size: int = 16,
         epochs: int = 1000,
         learning_rate: float = 1e-4,
-        device: str = "cpu",
         classifier_hidden_dims: List[int] = [128],
         classifier_dropout_rate: float = 0.2,
         patience: int = 5, # Number of epochs with no improvement after which training will be stopped
@@ -118,7 +119,7 @@ class TrainService:
         classifier = self.classifier_class.create(
             embedding_dimension=embedding_dim,
             num_classes=self.num_classes,
-            device=device,
+            device=self.device,
             hidden_dims=classifier_hidden_dims,
             dropout_rate=classifier_dropout_rate
         )
@@ -152,7 +153,7 @@ class TrainService:
             train_total = 0
 
             for inputs, labels in train_loader:
-                inputs, labels = inputs.to(device), labels.to(device)
+                inputs, labels = inputs.to(self.device), labels.to(self.device)
 
                 # Forward pass
                 outputs = classifier.forward(inputs)
@@ -180,7 +181,7 @@ class TrainService:
 
             with torch.no_grad():
                 for inputs, labels in val_loader:
-                    inputs, labels = inputs.to(device), labels.to(device)
+                    inputs, labels = inputs.to(self.device), labels.to(self.device)
 
                     outputs = classifier.forward(inputs)
                     loss = criterion(outputs, labels)
