@@ -172,7 +172,8 @@ def run_classification_benchmark(
         embedding_model=embedding_model,
         classifier_class=classifier,
         num_classes=len(EMOTION_MAPPING),
-        model_output_path=RESULTS_PATH
+        model_output_path=RESULTS_PATH,
+        device=device
     )
     
     # Train model if it doesn't exist
@@ -198,7 +199,8 @@ def run_classification_benchmark(
     test_service = TestService(
         embedding_model=embedding_model,
         classifier=train_service.get_best_model(),
-        output_path=RESULTS_PATH / "test"
+        output_path=RESULTS_PATH / "test",
+        device=device
     )
 
     # Test model and get metrics

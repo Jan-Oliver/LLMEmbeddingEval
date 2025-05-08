@@ -3,6 +3,7 @@
 # Common Benchmark Parameters
 BASE_RESULTS_FOLDER="benchmarking_results/classification/$(date +%Y%m%d_%H%M%S)" # Unique folder for this batch of runs
 BASE_DATASET_FOLDER="data"
+TARGET_DEVICE="cuda" # or "cpu" or "mps"
 
 # Ensure Python's output is not buffered if run through a pipe or tee
 export PYTHONUNBUFFERED=1
@@ -59,6 +60,7 @@ for config in "${model_configs[@]}"; do
         --model-name "$model_name" \
         $normalize_arg \
         --prefix-function-name "$prefix_name" \
+        --device "$TARGET_DEVICE" \
         --base-results-folder "$BASE_RESULTS_FOLDER" \
         --base-dataset-folder "$BASE_DATASET_FOLDER" | tee "$log_file_path"
 
