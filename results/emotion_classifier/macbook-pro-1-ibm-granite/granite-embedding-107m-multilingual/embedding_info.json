@@ -1,5 +1,0 @@
-{
-    "name": "ibm-granite/granite-embedding-107m-multilingual",
-    "type": "SentenceTransformerModel",
-    "dimension": 384
-}

@@ -1,5 +1,0 @@
-{
-    "name": "sentence-transformers/all-mpnet-base-v2",
-    "type": "SentenceTransformerModel",
-    "dimension": 768
-}

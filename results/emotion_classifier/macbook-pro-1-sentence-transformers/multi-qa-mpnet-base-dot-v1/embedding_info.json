@@ -1,5 +1,0 @@
-{
-    "name": "sentence-transformers/multi-qa-mpnet-base-dot-v1",
-    "type": "SentenceTransformerModel",
-    "dimension": 768
-}
