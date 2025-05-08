@@ -15,7 +15,9 @@ class SimpleEmotionClassifier(AbstractEmotionClassifier):
                embedding_dimension: int, 
                num_classes: int, 
                device: str = "cpu", 
-               **kwargs) -> 'SimpleEmotionClassifier':
+               hidden_dims: list[int] = [128],
+               dropout_rate: float = 0.2
+            ) -> 'SimpleEmotionClassifier':
         """
         Factory method to create a classifier with standardized parameters.
         
@@ -28,9 +30,6 @@ class SimpleEmotionClassifier(AbstractEmotionClassifier):
         Returns:
             An instance of the classifier
         """
-        # Extract implementation-specific parameters with defaults
-        hidden_dims = kwargs.get('hidden_dims', [256, 128])
-        dropout_rate = kwargs.get('dropout_rate', 0.2)
         
         # Create and return the instance
         return cls(
@@ -45,7 +44,7 @@ class SimpleEmotionClassifier(AbstractEmotionClassifier):
         self, 
         input_dim: int, 
         num_emotion_classes: int,
-        hidden_dims: list = [128],
+        hidden_dims: list[int] = [128],
         dropout_rate: float = 0.2,
         device: str = "cpu"
     ):

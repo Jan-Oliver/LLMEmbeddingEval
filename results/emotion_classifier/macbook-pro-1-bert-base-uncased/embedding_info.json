@@ -1,6 +1,0 @@
-{
-    "name": "bert-base-uncased",
-    "type": "SentenceTransformerModel",
-    "dimension": 768,
-    "language": "multilingual"
-}

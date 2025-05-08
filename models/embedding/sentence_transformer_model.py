@@ -39,7 +39,7 @@ class SentenceTransformerModel(AbstractEmbeddingModel):
     def load_model(self) -> None:
         """Load the model into memory."""
         self._monitoring_service.start_model_load_monitoring()
-        self._model = SentenceTransformer(self._name, trust_remote_code=True)
+        self._model = SentenceTransformer(self._name)
         # Run a dummy forward pass to ensure the model is loaded
         self._model.eval()
         self._model.encode("Hello, world!", normalize_embeddings=self._normalize_embeddings)

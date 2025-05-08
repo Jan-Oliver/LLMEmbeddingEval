@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/all-mpnet-base-v2",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 57,
+    "val_loss": 0.460744706650804,
+    "val_acc": 0.8559077809798271,
+    "learning_rate": 5e-05
+}

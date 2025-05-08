@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dimension": 384,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 53,
+    "val_loss": 0.5045276982468212,
+    "val_acc": 0.840057636887608,
+    "learning_rate": 0.0001
+}

@@ -172,7 +172,7 @@ class EnronDatasetProvider(AbstractDatasetProvider):
         
         # Read the specified number of rows from the raw data file
         print(f"Reading up to {self.target_size} rows from {self.raw_data_path}...")
-        df = pd.read_csv(self.raw_data_path, nrows=self.target_size)
+        df = pd.read_csv(self.raw_data_path, nrows=self.target_size, skiprows=range(1, 10001))
         
         # Process emails with a progress bar
         print("Preprocessing emails...")

@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/all-distilroberta-v1",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 62,
+    "val_loss": 0.4846361915041459,
+    "val_acc": 0.8378962536023055,
+    "learning_rate": 0.0001
+}

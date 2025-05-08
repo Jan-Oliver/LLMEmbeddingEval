@@ -12,7 +12,9 @@ class AbstractEmotionClassifier(ABC):
             embedding_dimension: int, 
             num_classes: int, 
             device: str = "cpu", 
-            **kwargs) -> 'AbstractEmotionClassifier':
+            hidden_dims: list[int] = [128],
+            dropout_rate: float = 0.2,
+            ) -> 'AbstractEmotionClassifier':
         """
         Factory method to create a classifier with standardized parameters.
         
@@ -20,7 +22,6 @@ class AbstractEmotionClassifier(ABC):
             embedding_dimension: Dimension of input embeddings
             num_classes: Number of emotion classes
             device: Device to run model on ('cpu' or 'cuda')
-            **kwargs: Additional implementation-specific parameters
                 
         Returns:
             An instance of the classifier

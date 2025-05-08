@@ -21,21 +21,6 @@ from data.synthetic_dataset_provider.service import SyntheticDatasetProvider
 RANDOM_STATE: int = 42
 VAL_SIZE: float = 0.3
 
-# Embedding model name
-# EMBEDDING_MODEL_NAME: str = "google-bert/bert-base-uncased"
-# EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-MiniLM-L6-v2"
-# EMBEDDING_MODEL_NAME: str = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
-# EMBEDDING_MODEL_NAME: str = "ibm-granite/granite-embedding-107m-multilingual"
-EMBEDDING_MODEL_NAME: str = "intfloat/multilingual-e5-large"
-EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
-EMBEDDING_PREFIX_FUNCTION: Callable[[str], str] = lambda x: "query: " + x
-
-LAPTOP: str = "macbook-pro-1"
-
-# Dataset size and path
-OUTPUT_PATH = Path(os.path.join(".", "data", "datasets"))
-MODEL_OUTPUT_PATH = Path(os.path.join(".", "results", "emotion_classifier", f"{LAPTOP}-{EMBEDDING_MODEL_NAME}"))
-
 # Mapping of emotions to numerical values
 EMOTION_MAPPING: dict[str, int] = {
     'Anger': 0,
@@ -44,6 +29,94 @@ EMOTION_MAPPING: dict[str, int] = {
     'Sadness': 3,
     'Fear': 4,
 }
+
+
+# -----
+# Params: 560M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "intfloat/multilingual-e5-large"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = True
+# EMBEDDING_PREFIX_FUNCTION: Callable[[str], str] = lambda x: "query: " + x
+# print(EMBEDDING_PREFIX_FUNCTION("Hello, world!"))
+# -----
+# Params: 560M !TODO: Done
+EMBEDDING_MODEL_NAME: str = "intfloat/multilingual-e5-large-instruct"
+EMBEDDING_NORMALIZE_EMBEDDINGS: bool = True
+EMBEDDING_PREFIX_FUNCTION: Callable[[str], str] = lambda x: f"Instruct: Classify the emotion expressed in the given Twitter message into one of the {len(EMOTION_MAPPING)} emotions: {', '.join(EMOTION_MAPPING.keys())}.\nQuery: " + x
+print(EMBEDDING_PREFIX_FUNCTION("Hello, world!"))
+# -----
+# Params: 278M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "intfloat/multilingual-e5-base"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = True
+# EMBEDDING_PREFIX_FUNCTION: Callable[[str], str] = lambda x: "query: " + x
+# print(EMBEDDING_PREFIX_FUNCTION("Hello, world!"))
+# -----
+# Params: 118M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "intfloat/multilingual-e5-small"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = True
+# EMBEDDING_PREFIX_FUNCTION: Callable[[str], str] = lambda x: "query: " + x
+# print(EMBEDDING_PREFIX_FUNCTION("Hello, world!"))
+# -----
+# Params: 110M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "google-bert/bert-base-uncased"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 22.7M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-MiniLM-L6-v2"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 33.4M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-MiniLM-L12-v2"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 109M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-mpnet-base-v2"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 109M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 82M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-distilroberta-v1"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 278M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 278M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "ibm-granite/granite-embedding-278m-multilingual"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 107M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "ibm-granite/granite-embedding-107m-multilingual"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 109M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "avsolatorio/GIST-Embedding-v0"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+# Params: 33.4M !TODO: Done
+# EMBEDDING_MODEL_NAME: str = "avsolatorio/GIST-small-Embedding-v0"
+# EMBEDDING_NORMALIZE_EMBEDDINGS: bool = False
+# EMBEDDING_PREFIX_FUNCTION = lambda x: x
+# -----
+
+LAPTOP: str = "macbook-pro-1"
+
+# Dataset size and path
+OUTPUT_PATH = Path(os.path.join(".", "data", "datasets"))
+MODEL_OUTPUT_PATH = Path(os.path.join(".", "results", "emotion_classifier", f"{LAPTOP}-{EMBEDDING_MODEL_NAME}"))
 
 def main():
     # Load environment variables
@@ -148,41 +221,23 @@ def main():
         model_output_path=MODEL_OUTPUT_PATH
     )
     
-    # Train model
+    # Train model if it doesn't exist
     train_metrics = train_service.train(
         train_df=train_df,
         val_df=val_df,
         text_column='text',
         label_column='emotion_label',
+        emotion_mapping={v: k for k, v in EMOTION_MAPPING.items()},
         batch_size=16,
-        epochs=150,
+        epochs=1000,
         learning_rate=1e-4,
-        classifier_kwargs={
-            'hidden_dims': [128],
-            'dropout_rate': 0.2
-        }
+        classifier_hidden_dims=[128],
+        classifier_dropout_rate=0.2,
+        patience = 10, # Number of epochs with no improvement after which training will be stopped
+        lr_scheduler_params= {'mode': 'min', 'factor': 0.5, 'patience': 3} # Parameters for ReduceLROnPlateau
     )
-    
     print("Training metrics:", train_metrics)
-    
-    # Initialize test service with the trained classifier
-    print("Running evaluation...")
-    eval_service = TestService(
-        embedding_model=embedding_model,
-        classifier=train_service.get_best_model(),
-        output_path=MODEL_OUTPUT_PATH / "evaluation"
-    )
-
-    # Test model and get metrics
-    eval_metrics = eval_service.evaluate(
-        df=val_df,
-        text_column='text',
-        label_column='emotion_label',
-        emotion_mapping={v: k for k, v in EMOTION_MAPPING.items()}  # Reverse mapping for confusion matrix labels
-    )
-
-    print("Evaluation metrics:", eval_metrics)
-    
+        
     
     # Now we test the model on the test dataset
     print("Running test ...")
@@ -202,7 +257,6 @@ def main():
     
     print("Test metrics:", test_metrics)
     monitoring_service.save_all_events()
-    monitoring_service.analyze_pc_compatibility()
     
     
 if __name__ == "__main__":

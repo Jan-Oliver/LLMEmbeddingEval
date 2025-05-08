@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "google-bert/bert-base-uncased",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 62,
+    "val_loss": 0.4521567764388725,
+    "val_acc": 0.8566282420749279,
+    "learning_rate": 6.25e-06
+}
