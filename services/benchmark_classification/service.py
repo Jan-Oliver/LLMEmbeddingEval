@@ -15,7 +15,6 @@ from services.test.service import TestService
 from services.monitoring.service import MonitoringService
 from data.twitter_dataset_provider.service import TwitterDatasetProvider
 from data.enron_dataset_provider.service import EnronDatasetProvider
-from data.synthetic_dataset_provider.service import SyntheticDatasetProvider
 
 import logging
 
@@ -90,15 +89,6 @@ def run_classification_benchmark(
         num_classifications=5,
         max_workers=5,
     )
-    
-    # synthetic_dataset_provider = SyntheticDatasetProvider(
-    #     output_path=DATASET_PATH,
-    #     target_emotions=list(EMOTION_MAPPING.keys()),
-    #     target_size=10000,
-    #     openai_api_key=api_key,
-    #     model="gpt-4.1-mini",
-    #     industries=["finance", "technology", "healthcare", "retail", "manufacturing", "education", "energy", "construction", "hospitality"],
-    # )
     
     
     train_dataset: List[AbstractDatasetProvider] = [
