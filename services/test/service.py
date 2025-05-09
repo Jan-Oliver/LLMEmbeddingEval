@@ -124,6 +124,8 @@ class TestService:
         # Get predictions
         predicted_labels = self.classifier.predict(inputs)
         predicted_labels = predicted_labels.cpu().numpy().astype(int) # Ensure integer type
+        
+        print("Predicted labels: ", predicted_labels)
 
         # Use the new method for metric calculation and visualization
         return self._calculate_and_save_evaluation(true_labels.astype(int), predicted_labels, emotion_mapping)
@@ -141,8 +143,11 @@ class TestService:
         """
         # Calculate metrics
         all_labels = list(emotion_mapping.keys())
+        
+        print("All labels: ", all_labels)
 
         target_names = [emotion_mapping.get(i, f"Label_{i}") for i in all_labels]
+        print("Target names: ", target_names)
         # Ensure labels argument matches the unique labels present
         labels_for_report = all_labels
         # Create the emotion_mapping dictionary to be used in _create_visualizations,
@@ -157,6 +162,7 @@ class TestService:
             output_dict=True,
             zero_division=0 # Handle cases with no true/predicted samples for a class
         )
+        print("Report: ", report)
         conf_matrix = confusion_matrix(true_labels, predicted_labels, labels=all_labels) # Use all unique labels for matrix
 
         assert isinstance(report, dict)
@@ -165,7 +171,6 @@ class TestService:
         # Pass the viz_emotion_mapping that covers all relevant labels
         if self.output_path:
             self._create_visualizations(conf_matrix, report, viz_emotion_mapping)
-
 
         # Save detailed results
         if self.output_path:

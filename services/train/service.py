@@ -94,6 +94,8 @@ class TrainService:
         # Calculate class weights
         class_weights = compute_class_weight(class_weight='balanced', classes=classes, y=train_labels) # type: ignore
         
+        print("Classes: ", classes)
+        print("Class weights: ", class_weights)
         # Convert to a PyTorch tensor and move to the appropriate device
         class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32).to(self.device)
 

@@ -126,7 +126,7 @@ def run_classification_benchmark(
     
     # Statify by emotion and language
     stratify_labels = train_df['emotion_label'].astype(str) + '_' + train_df['language'].astype(str)
-
+    
     train_df, val_df = train_test_split(
         train_df,
         test_size=VAL_SIZE,
@@ -140,9 +140,7 @@ def run_classification_benchmark(
         output_dir=RESULTS_PATH / "monitoring"
     )
     
-    
-    # Choose an embedding model
-    #embedding_model = HuggingFaceModel(model_name=EMBEDDING_MODEL_NAME, monitoring_service=monitoring_service)
+
     embedding_model = SentenceTransformerModel(
         model_name=model_name, 
         monitoring_service=monitoring_service, 
