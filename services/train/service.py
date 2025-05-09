@@ -135,7 +135,8 @@ class TrainService:
         )
         
         # Define loss function and optimizer
-        criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
+        #criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
+        criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(classifier.parameters(), lr=learning_rate)
 
         # Initialize the learning rate scheduler
