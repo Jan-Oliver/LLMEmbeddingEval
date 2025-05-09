@@ -126,6 +126,9 @@ class TestService:
         predicted_labels = predicted_labels.cpu().numpy().astype(int) # Ensure integer type
         
         print("Predicted labels: ", predicted_labels)
+        # Figure out the unique labels
+        unique_labels = np.unique(predicted_labels)
+        print("Unique labels: ", unique_labels)
 
         # Use the new method for metric calculation and visualization
         return self._calculate_and_save_evaluation(true_labels.astype(int), predicted_labels, emotion_mapping)
