@@ -41,7 +41,6 @@ def prefix_query(text: str) -> str: return "query: " + text
 def prefix_passage(text: str) -> str: return "passage: " + text
 
 def prefix_e5_large_instruct(text: str) -> str:
-    EMOTION_MAPPING: dict[str, int] = {'Anger': 0, 'Neutral': 1, 'Joy': 2, 'Sadness': 3, 'Fear': 4} # Define this within the function or ensure it's accessible
     return f"Instruct: Classify the emotion expressed in the given Twitter message into one of the {len(EMOTION_MAPPING)} emotions: {', '.join(EMOTION_MAPPING.keys())}.\nQuery: " + text
 
 PREFIX_FUNCTIONS: Dict[str, Optional[Callable[[str], str]]] = {

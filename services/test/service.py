@@ -71,7 +71,7 @@ class TestService:
         df: pd.DataFrame,
         text_column: str,
         label_column: str,
-        emotion_mapping: Optional[Dict[int, str]] = None,
+        emotion_mapping: Dict[int, str],
         batch_size: int = 32
     ) -> Dict[str, Any]:
         """
@@ -98,11 +98,12 @@ class TestService:
         # Use the new method for metric calculation and visualization
         return self._calculate_and_save_evaluation(true_labels, predicted_labels, emotion_mapping)
 
+
     def evaluate_with_embeddings(
         self,
         embeddings: np.ndarray,
         true_labels: np.ndarray,
-        emotion_mapping: Optional[Dict[int, str]] = None
+        emotion_mapping: Dict[int, str]
     ) -> Dict[str, Any]:
         """
         Evaluate model using pre-calculated embeddings and true labels.
@@ -132,30 +133,22 @@ class TestService:
         self,
         true_labels: np.ndarray,
         predicted_labels: np.ndarray,
-        emotion_mapping: Optional[Dict[int, str]] = None
+        emotion_mapping: Dict[int, str]
     ) -> Dict[str, Any]:
         """
         Internal method to calculate metrics, create visualizations, and save results.
         Used by both evaluate and evaluate_with_embeddings.
         """
         # Calculate metrics
-        # Handle potential issues if true_labels or predicted_labels contain labels
-        # not present in emotion_mapping keys
-        all_labels = sorted(list(set(np.concatenate([true_labels, predicted_labels]))))
+        all_labels = list(emotion_mapping.keys())
 
-        if emotion_mapping:
-             target_names = [emotion_mapping.get(i, f"Label_{i}") for i in all_labels]
-             # Ensure labels argument matches the unique labels present
-             labels_for_report = all_labels
-             # Create the emotion_mapping dictionary to be used in _create_visualizations,
-             # ensuring it includes all labels found in data for robustness.
-             viz_emotion_mapping = {i: emotion_mapping.get(i, f"Label_{i}") for i in all_labels}
-        else:
-             target_names = None
-             labels_for_report = None
-             viz_emotion_mapping = {i: f"Label_{i}" for i in all_labels} # Create a mapping with default names
-
-
+        target_names = [emotion_mapping.get(i, f"Label_{i}") for i in all_labels]
+        # Ensure labels argument matches the unique labels present
+        labels_for_report = all_labels
+        # Create the emotion_mapping dictionary to be used in _create_visualizations,
+        # ensuring it includes all labels found in data for robustness.
+        viz_emotion_mapping = {i: emotion_mapping.get(i, f"Label_{i}") for i in all_labels}
+       
         report = classification_report(
             true_labels,
             predicted_labels,
@@ -176,15 +169,15 @@ class TestService:
 
         # Save detailed results
         if self.output_path:
-             results_data = {
-                 'accuracy': report.get('accuracy', 0.0), # Use .get for safety
-                 'macro_avg_f1': report.get('macro avg', {}).get('f1-score', 0.0),
-                 'weighted_avg_f1': report.get('weighted avg', {}).get('f1-score', 0.0),
-                 'confusion_matrix': conf_matrix.tolist(),
-                 'classification_report': report
-             }
-             with open(os.path.join(str(self.output_path), 'evaluation_results.json'), 'w') as f:
-                 json.dump(results_data, f, indent=4)
+            results_data = {
+                'accuracy': report.get('accuracy', 0.0), # Use .get for safety
+                'macro_avg_f1': report.get('macro avg', {}).get('f1-score', 0.0),
+                'weighted_avg_f1': report.get('weighted avg', {}).get('f1-score', 0.0),
+                'confusion_matrix': conf_matrix.tolist(),
+                'classification_report': report
+            }
+            with open(os.path.join(str(self.output_path), 'evaluation_results.json'), 'w') as f:
+                json.dump(results_data, f, indent=4)
 
 
         # Return metrics
@@ -261,28 +254,28 @@ class TestService:
         """
         # Get the integer class indices from the emotion_mapping keys and sort them.
         # This list represents the expected order of classes (0, 1, 2, ...)
-        sorted_class_indices = sorted(emotion_mapping.keys())
+        class_indices = list(emotion_mapping.keys())
 
         values = []
         label_names = [] # Generate label names based on the sorted indices
 
         # Iterate through the sorted integer indices from the emotion mapping
-        for i in sorted_class_indices:
-             # Get the string name for this integer index using the emotion mapping
-             # Use .get for safety, though the map passed from _calculate... should cover all class_indices
-             class_name = emotion_mapping.get(i, f"Label_{i}")
+        for i in class_indices:
+            # Get the string name for this integer index using the emotion mapping
+            # Use .get for safety, though the map passed from _calculate... should cover all class_indices
+            class_name = emotion_mapping.get(i, f"Label_{i}")
 
-             # Get metric value safely using the **class_name** as the key in the report
-             # report[class_name] gives the dict for that class name (e.g., {'precision': 0.8, ...})
-             class_report_dict = report.get(class_name, {}) # Get the dict for this class name, default to {}
-             metric_value = class_report_dict.get(metric, 0.0) # Get the specific metric value from that dict
+            # Get metric value safely using the **class_name** as the key in the report
+            # report[class_name] gives the dict for that class name (e.g., {'precision': 0.8, ...})
+            class_report_dict = report.get(class_name, {}) # Get the dict for this class name, default to {}
+            metric_value = class_report_dict.get(metric, 0.0) # Get the specific metric value from that dict
 
-             values.append(metric_value)
-             label_names.append(class_name) # Add the class name to the labels list
+            values.append(metric_value)
+            label_names.append(class_name) # Add the class name to the labels list
 
 
         # Check if any class metrics were found based on the mapping
-        if not sorted_class_indices:
+        if not class_indices:
             print(f"Warning: No class indices found in the emotion mapping. Skipping plot '{title}'.")
             return # Exit the function if no data to plot
 
