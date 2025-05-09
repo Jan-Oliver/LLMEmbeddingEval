@@ -9,6 +9,7 @@ import torch.optim as optim
 # Import the learning rate scheduler module
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader, TensorDataset
+from sklearn.utils.class_weight import compute_class_weight
 import json
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Type
@@ -87,7 +88,14 @@ class TrainService:
         # Generate embeddings for training set
         print("Generating embeddings for training set...")
         train_texts = train_df[text_column].tolist()
+        classes = train_df[label_column].unique()
         train_labels = train_df[label_column].values
+        
+        # Calculate class weights
+        class_weights = compute_class_weight(class_weight='balanced', classes=classes, y=train_labels) # type: ignore
+        
+        # Convert to a PyTorch tensor and move to the appropriate device
+        class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32).to(self.device)
 
         train_embeddings = self.embedding_model.embed_texts(train_texts, batch_size=batch_size)
 
@@ -123,9 +131,9 @@ class TrainService:
             hidden_dims=classifier_hidden_dims,
             dropout_rate=classifier_dropout_rate
         )
-
+        
         # Define loss function and optimizer
-        criterion = nn.CrossEntropyLoss()
+        criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
         optimizer = optim.Adam(classifier.parameters(), lr=learning_rate)
 
         # Initialize the learning rate scheduler
