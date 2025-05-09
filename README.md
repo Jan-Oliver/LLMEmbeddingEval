@@ -14,11 +14,16 @@ OPENAI_API_KEY="sk-proj-xxxx...."
 
 And continue to the next steps.
 
-#### Option 2: Download the full dataset
+#### Option 2: Download the full processed dataset
 
-Head over to this link and download the zipped dataset.
+To do this, you have to execute the `run_download_dataset.sh` as follows.
 
-Then extract it and move it in the `data` folder: `data/datasets/...`.
+```bash
+# Allow execution
+chmod +x download_dataset.sh
+# Execute script
+./download_dataset.sh
+```
 
 Now you can continue.
 
@@ -30,7 +35,7 @@ Figure out which models perform the best for our emotion classification task.
 #### Set up Environment
 - Wheter you want to run it on a GPU or on CPU is up to you. Set that environment up
 - Install requirements `pip install -r requirements.txt`
-- Make file executeable `sudo chmod +x run_classification_benchmark.sh`
+- Make file executeable `chmod +x run_classification_benchmark.sh`
 
 #### Define Hyperparameters
 
@@ -101,7 +106,12 @@ The 2 parameters to change are:
 Other things are the embedding models. But generally not needed to change this!
 
 #### Start Benchmark
-- To start the benchmark just execute the file `./run_performance_benchmark.sh`
+- To start the benchmark just execute the file `./run_performance_benchmark.sh` as follows:
+
+```bash
+chmod +x ./run_performance_benchmark.sh
+./run_performance_benchmark.sh
+```
 
 #### Performance Benchmark Result
-- 
+- The performance benchmark results are stored in `benchmarking_results/performance` and contains logs for each model you run.
