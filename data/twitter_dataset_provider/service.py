@@ -449,11 +449,11 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
                     print(f"English fused data already exists and is valid at {self.english_fused_path}. Skipping fusion/processing.")
                     return df_english_fused
                  else:
-                      print(f"Warning: English fused data file {self.english_fused_path} exists but has no English rows. Refusing/reprocessing.")
-                      df_english_fused = None # Force reprocessing
+                    print(f"Warning: English fused data file {self.english_fused_path} exists but has no English rows. Refusing/reprocessing.")
+                    df_english_fused = None # Force reprocessing
             else:
-                 print(f"Warning: English fused data file {self.english_fused_path} missing expected columns. Refusing/reprocessing.")
-                 df_english_fused = None # Force reprocessing
+                print(f"Warning: English fused data file {self.english_fused_path} missing expected columns. Refusing/reprocessing.")
+                df_english_fused = None # Force reprocessing
 
 
         if df_english_fused is None:
@@ -461,8 +461,8 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
             fused_df = self._fuse_datasets()
 
             if fused_df.empty:
-                 print("Fusion resulted in an empty dataset. Cannot save English fused data.")
-                 return pd.DataFrame()
+                print("Fusion resulted in an empty dataset. Cannot save English fused data.")
+                return pd.DataFrame()
 
             # Step 2: Balance the dataset if required
             if self.balance_emotions:
@@ -488,8 +488,7 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
 
 
         return df_english_fused
-
-
+    
     def _balance_dataset(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Balance the dataset to have an equal number of samples per emotion.
@@ -500,43 +499,38 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
         Returns:
             pd.DataFrame: Balanced DataFrame
         """
-        if not self.balance_emotions:
+        
+        if not self.balance_emotions or df.empty or 'emotion' not in df.columns:
+            if self.balance_emotions:
+                 if df.empty: print("Warning: Cannot balance an empty dataset.")
+                 elif 'emotion' not in df.columns: print("Warning: Cannot balance dataset, 'emotion' column missing.")
             return df
 
-        # Count samples per emotion
         emotion_counts = df['emotion'].value_counts()
-        # Check if emotion_counts is empty to prevent errors
+
         if emotion_counts.empty:
-            print("Warning: Cannot balance an empty dataset.")
+            print("Warning: No emotions found in dataset for balancing.")
             return df
 
         min_count = emotion_counts.min()
-        print(f"Balancing dataset to minimum emotion count: {min_count}")
 
-        # Sample equally from each emotion
+        if min_count == 0:
+            print("Warning: Minimum emotion count is 0. Balancing cannot create samples for all classes.")
+            return df
+
+        print(f"Balancing dataset by undersampling majority classes to {min_count} samples per emotion.")
+
         balanced_dfs = []
-        # Iterate through target emotions to ensure all targets are considered
         for emotion in self.target_emotions:
-            if emotion in df['emotion'].unique(): # Check if emotion exists in the DataFrame
+            if emotion in emotion_counts:
                 emotion_df = df[df['emotion'] == emotion]
-                # If we have more samples than min_count, sample randomly
-                if len(emotion_df) > min_count:
-                    # Ensure min_count is not zero if any emotions had zero samples initially
-                    sample_size = max(0, min_count)
-                    if sample_size > 0:
-                        emotion_df = emotion_df.sample(sample_size, random_state=42)
-                        balanced_dfs.append(emotion_df)
-                    else:
-                        # If min_count is 0, no samples can be added for any emotion
-                        pass # Or add an empty dataframe? Let's just skip if min_count is 0
-                        # print(f"Skipping {emotion}: min_count is 0.")
+                sampled_df = emotion_df.sample(n=min_count, random_state=42)
+                balanced_dfs.append(sampled_df)
 
-        # If min_count was 0 for all emotions, balanced_dfs might be empty
         if not balanced_dfs:
-             print("Warning: Balancing resulted in an empty dataset (likely min emotion count was 0).")
-             return pd.DataFrame()
+            print("Warning: Balancing resulted in an empty list of DataFrames.")
+            return pd.DataFrame()
 
-        # Combine balanced dataframes
         balanced_df = pd.concat(balanced_dfs, ignore_index=True)
 
         return balanced_df
@@ -653,7 +647,6 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
         if not final_df.empty:
             final_df.to_csv(self.final_output_path, index=False, quoting=csv.QUOTE_ALL, escapechar='\\')
             print(f"Final combined dataset saved to {self.final_output_path}")
-             # Print final statistics
             print("\nFinal Combined Dataset Statistics:")
             print(f"Total samples: {len(final_df)}")
             if 'language' in final_df.columns:
@@ -669,13 +662,11 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
 
 
         else:
-             print(f"Final combined dataset is empty, not saving {self.final_output_path}")
+            print(f"Final combined dataset is empty, not saving {self.final_output_path}")
 
 
         return final_df
 
-
-    # Removed _create_dataset as its logic is now spread across state-managed steps
 
     def ensure_dataset(self) -> None:
         """Ensure the combined processed and translated dataset exists, creating it if necessary."""
