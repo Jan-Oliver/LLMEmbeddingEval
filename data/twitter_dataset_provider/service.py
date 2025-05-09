@@ -92,18 +92,18 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
         try:
             # Attempt to read with utf-8, fallback to latin-1 if needed
             try:
-                 df = pd.read_csv(path, encoding='utf-8', on_bad_lines='skip', quoting=csv.QUOTE_ALL, escapechar='\\')
+                df = pd.read_csv(path, encoding='utf-8', on_bad_lines='skip', quoting=csv.QUOTE_ALL, escapechar='\\')
             except Exception as e:
-                 self._debug_print(f"Error reading CSV {path} with utf-8: {e}. Attempting with latin-1.")
-                 df = pd.read_csv(path, encoding='latin-1', on_bad_lines='skip', quoting=csv.QUOTE_ALL, escapechar='\\')
+                self._debug_print(f"Error reading CSV {path} with utf-8: {e}. Attempting with latin-1.")
+                df = pd.read_csv(path, encoding='latin-1', on_bad_lines='skip', quoting=csv.QUOTE_ALL, escapechar='\\')
 
             if df.empty:
-                 self._debug_print(f"File is empty: {path}")
-                 return None
+                self._debug_print(f"File is empty: {path}")
+                return None
             # Basic check to see if it's a dataframe with columns
             if df.shape[1] == 0:
-                 self._debug_print(f"File loaded but has no columns: {path}")
-                 return None
+                self._debug_print(f"File loaded but has no columns: {path}")
+                return None
             self._debug_print(f"File loaded successfully: {path} ({len(df)} rows)")
             return df
         except Exception as e:
@@ -297,17 +297,11 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
             # Adjusted mapping based on common CBET columns and target emotions
             emotion_col_mapping = {
                 'anger': 'Anger',
-                'joy': 'Joy', # CBET 'joy' -> Target 'Joy'
+                'joy': 'Joy',
                 'sadness': 'Sadness',
                 'fear': 'Fear',
-                # CBET also has 'love', 'surprise', 'thankfulness' etc.
-                # Mapping 'love', 'thankfulness' to 'Joy' as per original code
                 'love': 'Joy',
                 'thankfulness': 'Joy',
-                 # Map 'surprise' if 'Surprise' is a target emotion
-                 # 'surprise': 'Surprise' if 'Surprise' in self.target_emotions else None,
-                 # Handle 'disgust', 'shame', 'guilt' etc. if they map to targets
-                 # 'disgust': 'Disgust' if 'Disgust' in self.target_emotions else None,
             }
 
             # Filter mapping to include only target emotions
@@ -366,12 +360,12 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
                          dominant_emotion_candidates.append(emotion)
 
                 if max_score <= 0 and 'Neutral' in self.target_emotions:
-                     dominant_emotion = 'Neutral'
+                    dominant_emotion = 'Neutral'
                 elif len(dominant_emotion_candidates) == 1:
-                     dominant_emotion = dominant_emotion_candidates[0]
+                    dominant_emotion = dominant_emotion_candidates[0]
                 elif len(dominant_emotion_candidates) > 1:
-                     # Handle ties: pick one deterministically (e.g., first alphabetically)
-                     dominant_emotion = sorted(dominant_emotion_candidates)[0]
+                    # Handle ties: pick one deterministically (e.g., first alphabetically)
+                    dominant_emotion = sorted(dominant_emotion_candidates)[0]
 
 
                 # Only add rows with an identified dominant emotion that is one of our targets
@@ -380,8 +374,6 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
                         'text': text,
                         'emotion': dominant_emotion,
                         'source': 'cbet',
-                         # Optional: add max_score if needed, removed for simplicity based on last prompt
-                        #'score': max_score
                     })
                 elif dominant_emotion is None and not all_relevant_scores_zero:
                      # This case indicates scores > 0 but no dominant emotion was picked (e.g., mapping issue)
@@ -698,16 +690,16 @@ class TwitterDatasetProvider(AbstractDatasetProvider):
         # This checks if raw data exists and is valid, downloads if not
         crowdflower_available, cbet_available = self.ensure_datasets()
         if not crowdflower_available or not cbet_available:
-             print("Failed to download one or both raw source datasets. Cannot proceed.")
-             return
+            print("Failed to download one or both raw source datasets. Cannot proceed.")
+            return
 
         # Step 2: Load, Process, Fuse, Balance, Shuffle English Data
         # This checks if english_fused_path exists, loads/creates if not.
         # It calls _fuse_datasets internally if needed.
         df_english_fused = self._save_and_load_english_fused()
         if df_english_fused.empty:
-             print("Processing and fusing resulted in an empty English dataset. Cannot proceed.")
-             return
+            print("Processing and fusing resulted in an empty English dataset. Cannot proceed.")
+            return
 
 
         # Step 3: Translate Fused English Data
