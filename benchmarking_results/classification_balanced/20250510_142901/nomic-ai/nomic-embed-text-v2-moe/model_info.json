@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "nomic-ai/nomic-embed-text-v2-moe",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 49,
+    "val_loss": 0.7162962822656374,
+    "val_acc": 0.8277477477477477,
+    "learning_rate": 0.0001
+}

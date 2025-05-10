@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/distiluse-base-multilingual-cased-v2",
+    "embedding_dimension": 512,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 78,
+    "val_loss": 0.7490426110147356,
+    "val_acc": 0.8115315315315316,
+    "learning_rate": 5e-05
+}

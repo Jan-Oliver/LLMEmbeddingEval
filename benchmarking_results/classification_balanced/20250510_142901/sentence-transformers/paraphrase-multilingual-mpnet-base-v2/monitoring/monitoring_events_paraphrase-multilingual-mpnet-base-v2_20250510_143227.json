@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "5c4b11ff-c5a1-4783-adb2-f4c9061c96ee",
+        "context_name": "paraphrase-multilingual-mpnet-base-v2",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T14:31:26.939516Z",
+        "timestamp_end_iso": "2025-05-10T14:31:30.062885Z",
+        "duration_seconds": 3.12336475,
+        "ram_usage_start_mb": 5605.921875,
+        "ram_usage_end_mb": 13920.02734375,
+        "ram_usage_delta_mb": 8314.10546875
+    },
+    {
+        "event_id": "c8236d22-e98f-4257-9816-565e67074fc1",
+        "context_name": "paraphrase-multilingual-mpnet-base-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:31:30.067581Z",
+        "timestamp_end_iso": "2025-05-10T14:31:35.610806Z",
+        "duration_seconds": 5.543104026,
+        "ram_usage_start_mb": 13920.02734375,
+        "ram_usage_end_mb": 13958.2578125,
+        "ram_usage_delta_mb": 38.23046875,
+        "num_texts_processed": 6473,
+        "total_chars_processed": 10594459,
+        "avg_chars_per_text": 1636.7154333384829,
+        "seconds_per_text": 0.0008563423491425923,
+        "seconds_per_1k_chars": 0.0005232078415707683
+    },
+    {
+        "event_id": "3c0f3234-1641-468b-b0e7-b633a4318006",
+        "context_name": "paraphrase-multilingual-mpnet-base-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:31:35.611336Z",
+        "timestamp_end_iso": "2025-05-10T14:31:38.086425Z",
+        "duration_seconds": 2.475003354,
+        "ram_usage_start_mb": 13958.2578125,
+        "ram_usage_end_mb": 13966.38671875,
+        "ram_usage_delta_mb": 8.12890625,
+        "num_texts_processed": 2775,
+        "total_chars_processed": 4754843,
+        "avg_chars_per_text": 1713.456936936937,
+        "seconds_per_text": 0.0008918931005405406,
+        "seconds_per_1k_chars": 0.0005205226237753801
+    },
+    {
+        "event_id": "788cb586-cd3c-4003-bea1-2efe7108434e",
+        "context_name": "paraphrase-multilingual-mpnet-base-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:31:59.090766Z",
+        "timestamp_end_iso": "2025-05-10T14:32:27.040361Z",
+        "duration_seconds": 27.949114878,
+        "ram_usage_start_mb": 15247.46875,
+        "ram_usage_end_mb": 15871.5,
+        "ram_usage_delta_mb": 624.03125,
+        "num_texts_processed": 105049,
+        "total_chars_processed": 9569203,
+        "avg_chars_per_text": 91.09275671353369,
+        "seconds_per_text": 0.00026605788611029136,
+        "seconds_per_1k_chars": 0.002920735914788306
+    }
+]

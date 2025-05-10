@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "mixedbread-ai/deepset-mxbai-embed-de-large-v1",
+    "embedding_dimension": 1024,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 83,
+    "val_loss": 0.6656928215424219,
+    "val_acc": 0.8407207207207207,
+    "learning_rate": 0.0001
+}

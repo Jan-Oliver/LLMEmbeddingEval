@@ -1,0 +1,5 @@
+{
+    "name": "nomic-ai/nomic-embed-text-v2-moe",
+    "type": "SentenceTransformerModel",
+    "dimension": 768
+}

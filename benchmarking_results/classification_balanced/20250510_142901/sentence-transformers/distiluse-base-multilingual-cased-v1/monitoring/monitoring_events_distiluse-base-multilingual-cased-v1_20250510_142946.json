@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "42128428-4de2-4102-8c6e-6fe13b9dd2aa",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T14:29:04.474613Z",
+        "timestamp_end_iso": "2025-05-10T14:29:06.984508Z",
+        "duration_seconds": 2.509775316,
+        "ram_usage_start_mb": 5605.8125,
+        "ram_usage_end_mb": 13831.6484375,
+        "ram_usage_delta_mb": 8225.8359375
+    },
+    {
+        "event_id": "3bcce654-7ede-4561-9d37-7f7e3d60bb4a",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:29:06.988504Z",
+        "timestamp_end_iso": "2025-05-10T14:29:10.080916Z",
+        "duration_seconds": 3.092393418,
+        "ram_usage_start_mb": 13831.6484375,
+        "ram_usage_end_mb": 13860.39453125,
+        "ram_usage_delta_mb": 28.74609375,
+        "num_texts_processed": 6473,
+        "total_chars_processed": 10594459,
+        "avg_chars_per_text": 1636.7154333384829,
+        "seconds_per_text": 0.00047773728070446466,
+        "seconds_per_1k_chars": 0.00029188780833452654
+    },
+    {
+        "event_id": "0240b29b-4a04-4e46-aa8a-55c3af71db78",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:29:10.081380Z",
+        "timestamp_end_iso": "2025-05-10T14:29:11.496902Z",
+        "duration_seconds": 1.415499292,
+        "ram_usage_start_mb": 13860.39453125,
+        "ram_usage_end_mb": 13865.8125,
+        "ram_usage_delta_mb": 5.41796875,
+        "num_texts_processed": 2775,
+        "total_chars_processed": 4754843,
+        "avg_chars_per_text": 1713.456936936937,
+        "seconds_per_text": 0.0005100898349549549,
+        "seconds_per_1k_chars": 0.00029769632604062843
+    },
+    {
+        "event_id": "f408927c-f54c-48d9-9a68-ec3e33863054",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:29:29.230412Z",
+        "timestamp_end_iso": "2025-05-10T14:29:46.454160Z",
+        "duration_seconds": 17.223772741,
+        "ram_usage_start_mb": 14317.515625,
+        "ram_usage_end_mb": 14824.83984375,
+        "ram_usage_delta_mb": 507.32421875,
+        "num_texts_processed": 105049,
+        "total_chars_processed": 9569203,
+        "avg_chars_per_text": 91.09275671353369,
+        "seconds_per_text": 0.00016395941647231294,
+        "seconds_per_1k_chars": 0.0017999171656197493
+    }
+]

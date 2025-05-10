@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "e532b118-e92b-4cae-af1a-1b8bfebcbc55",
+        "context_name": "granite-embedding-278m-multilingual",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T14:42:42.829897Z",
+        "timestamp_end_iso": "2025-05-10T14:42:54.181858Z",
+        "duration_seconds": 11.351928063,
+        "ram_usage_start_mb": 5605.8046875,
+        "ram_usage_end_mb": 15244.390625,
+        "ram_usage_delta_mb": 9638.5859375
+    },
+    {
+        "event_id": "c659dc48-29db-4895-84c5-1668c29a593e",
+        "context_name": "granite-embedding-278m-multilingual",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:42:54.185097Z",
+        "timestamp_end_iso": "2025-05-10T14:43:06.353404Z",
+        "duration_seconds": 12.168227386,
+        "ram_usage_start_mb": 15244.390625,
+        "ram_usage_end_mb": 15647.35546875,
+        "ram_usage_delta_mb": 402.96484375,
+        "num_texts_processed": 6473,
+        "total_chars_processed": 10594459,
+        "avg_chars_per_text": 1636.7154333384829,
+        "seconds_per_text": 0.0018798435634172718,
+        "seconds_per_1k_chars": 0.001148546366171222
+    },
+    {
+        "event_id": "212a2dce-83b3-439d-a6a6-731df0a13167",
+        "context_name": "granite-embedding-278m-multilingual",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:43:06.353924Z",
+        "timestamp_end_iso": "2025-05-10T14:43:11.346753Z",
+        "duration_seconds": 4.992800717,
+        "ram_usage_start_mb": 15647.35546875,
+        "ram_usage_end_mb": 15647.35546875,
+        "ram_usage_delta_mb": 0.0,
+        "num_texts_processed": 2775,
+        "total_chars_processed": 4754843,
+        "avg_chars_per_text": 1713.456936936937,
+        "seconds_per_text": 0.0017992074655855854,
+        "seconds_per_1k_chars": 0.0010500453363023762
+    },
+    {
+        "event_id": "8d556c48-40a8-4194-94ad-cc6bdbffbea1",
+        "context_name": "granite-embedding-278m-multilingual",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T14:43:34.523829Z",
+        "timestamp_end_iso": "2025-05-10T14:44:02.222740Z",
+        "duration_seconds": 27.698334134,
+        "ram_usage_start_mb": 15782.05859375,
+        "ram_usage_end_mb": 16340.1796875,
+        "ram_usage_delta_mb": 558.12109375,
+        "num_texts_processed": 105049,
+        "total_chars_processed": 9569203,
+        "avg_chars_per_text": 91.09275671353369,
+        "seconds_per_text": 0.00026367061213338535,
+        "seconds_per_1k_chars": 0.0028945288478047755
+    }
+]
