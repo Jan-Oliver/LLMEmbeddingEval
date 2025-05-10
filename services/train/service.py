@@ -88,16 +88,25 @@ class TrainService:
         # Generate embeddings for training set
         print("Generating embeddings for training set...")
         train_texts = train_df[text_column].tolist()
-        classes = train_df[label_column].unique()
         train_labels = train_df[label_column].values
         
-        # Calculate class weights
-        class_weights = compute_class_weight(class_weight='balanced', classes=classes, y=train_labels) # type: ignore
+        # Important: Class 0 has to be in the first position. This is assumed by the loss function.
+        num_classes = len(list(train_df[label_column].unique()))
+        classes = np.arange(num_classes)
         
-        print("Classes: ", classes)
+        # Calculate class weights and convert to tensor
+        class_weights = compute_class_weight(class_weight='balanced', classes=classes, y=train_labels) # type: ignore
         print("Class weights: ", class_weights)
-        # Convert to a PyTorch tensor and move to the appropriate device
-        class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32).to(self.device)
+
+        # Alpha defines how balanced the predictions will be
+        # 0 = no balancing, all are 1!
+        # 0.5 = Moderate imbalance; preserve some original prior.
+        # 0.75 = Strong bias.Severe imbalance but you still want a hint of priors.
+        # 1.0 = Fully balanced. When minority‑class recall is critical.
+        alpha = 0.5
+        class_weights_tempered = class_weights ** alpha
+        print("Class weights tempered: ", class_weights_tempered)
+        class_weights_tensor = torch.tensor(class_weights_tempered, dtype=torch.float32).to(self.device)
 
         train_embeddings = self.embedding_model.embed_texts(train_texts, batch_size=batch_size)
 
@@ -135,8 +144,8 @@ class TrainService:
         )
         
         # Define loss function and optimizer
-        #criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
-        criterion = nn.CrossEntropyLoss()
+        criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
+        #criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(classifier.parameters(), lr=learning_rate)
 
         # Initialize the learning rate scheduler
