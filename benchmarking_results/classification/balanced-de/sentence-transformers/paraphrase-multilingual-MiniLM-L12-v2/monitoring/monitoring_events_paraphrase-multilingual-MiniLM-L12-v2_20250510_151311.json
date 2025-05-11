@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "67ca9ccf-06e8-4369-8247-43aaaf739ea9",
+        "context_name": "paraphrase-multilingual-MiniLM-L12-v2",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T15:12:50.363724Z",
+        "timestamp_end_iso": "2025-05-10T15:12:53.222167Z",
+        "duration_seconds": 2.858410097,
+        "ram_usage_start_mb": 5604.79296875,
+        "ram_usage_end_mb": 13004.1015625,
+        "ram_usage_delta_mb": 7399.30859375
+    },
+    {
+        "event_id": "9b8640c4-abb6-4aa5-96d3-15365b377729",
+        "context_name": "paraphrase-multilingual-MiniLM-L12-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:12:53.225748Z",
+        "timestamp_end_iso": "2025-05-10T15:12:54.682689Z",
+        "duration_seconds": 1.456831591,
+        "ram_usage_start_mb": 13004.1015625,
+        "ram_usage_end_mb": 13011.40234375,
+        "ram_usage_delta_mb": 7.30078125,
+        "num_texts_processed": 3236,
+        "total_chars_processed": 4780767,
+        "avg_chars_per_text": 1477.369283065513,
+        "seconds_per_text": 0.0004501951764524104,
+        "seconds_per_1k_chars": 0.0003047275868077236
+    },
+    {
+        "event_id": "138571a5-e461-48be-bdbd-d42c7a3106ae",
+        "context_name": "paraphrase-multilingual-MiniLM-L12-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:12:54.683406Z",
+        "timestamp_end_iso": "2025-05-10T15:12:55.336341Z",
+        "duration_seconds": 0.652869667,
+        "ram_usage_start_mb": 13011.40234375,
+        "ram_usage_end_mb": 13013.43359375,
+        "ram_usage_delta_mb": 2.03125,
+        "num_texts_processed": 1388,
+        "total_chars_processed": 2182516,
+        "avg_chars_per_text": 1572.4178674351585,
+        "seconds_per_text": 0.0004703671952449568,
+        "seconds_per_1k_chars": 0.0002991362569621483
+    },
+    {
+        "event_id": "b95bc25f-dca1-4d20-8af5-98e9e64d3e88",
+        "context_name": "paraphrase-multilingual-MiniLM-L12-v2",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:13:02.784717Z",
+        "timestamp_end_iso": "2025-05-10T15:13:11.054366Z",
+        "duration_seconds": 8.268181849,
+        "ram_usage_start_mb": 14293.91796875,
+        "ram_usage_end_mb": 14467.53515625,
+        "ram_usage_delta_mb": 173.6171875,
+        "num_texts_processed": 52523,
+        "total_chars_processed": 5167925,
+        "avg_chars_per_text": 98.39356091617006,
+        "seconds_per_text": 0.00015742021303048187,
+        "seconds_per_1k_chars": 0.0015999036071537415
+    }
+]

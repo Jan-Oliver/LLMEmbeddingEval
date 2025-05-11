@@ -147,7 +147,7 @@ def run_performance_benchmark(
     # --- Load Model ---
     model_load_start_time = time.perf_counter()
     try:
-        model = SentenceTransformer(model_name_or_path, device=target_device_str)
+        model = SentenceTransformer(model_name_or_path, device=target_device_str, trust_remote_code=True)
     except Exception as e:
         logger.error(f"Failed to load model {model_name_or_path}: {e}")
         benchmark_results["error"] = str(e)

@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "583baa2f-f26a-45f2-bcc3-d3a83dcc84cc",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T15:00:22.988029Z",
+        "timestamp_end_iso": "2025-05-10T15:00:25.188834Z",
+        "duration_seconds": 2.200777557,
+        "ram_usage_start_mb": 5595.58984375,
+        "ram_usage_end_mb": 13809.46875,
+        "ram_usage_delta_mb": 8213.87890625
+    },
+    {
+        "event_id": "ea739df9-f255-4903-9e14-84d39931f3b9",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:00:25.192104Z",
+        "timestamp_end_iso": "2025-05-10T15:00:26.811774Z",
+        "duration_seconds": 1.619647392,
+        "ram_usage_start_mb": 13809.46875,
+        "ram_usage_end_mb": 13823.1171875,
+        "ram_usage_delta_mb": 13.6484375,
+        "num_texts_processed": 3236,
+        "total_chars_processed": 5634036,
+        "avg_chars_per_text": 1741.0494437577256,
+        "seconds_per_text": 0.0005005090828182942,
+        "seconds_per_1k_chars": 0.0002874755134684975
+    },
+    {
+        "event_id": "91767619-e8f2-4752-a459-22c97f61061a",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:00:26.812097Z",
+        "timestamp_end_iso": "2025-05-10T15:00:27.500696Z",
+        "duration_seconds": 0.68857951,
+        "ram_usage_start_mb": 13823.1171875,
+        "ram_usage_end_mb": 13825.828125,
+        "ram_usage_delta_mb": 2.7109375,
+        "num_texts_processed": 1388,
+        "total_chars_processed": 2751983,
+        "avg_chars_per_text": 1982.6966858789626,
+        "seconds_per_text": 0.0004960947478386166,
+        "seconds_per_1k_chars": 0.0002502121234033786
+    },
+    {
+        "event_id": "6e8bf5d3-54ec-4959-84e9-7cd9f7784049",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:00:37.645818Z",
+        "timestamp_end_iso": "2025-05-10T15:00:45.603649Z",
+        "duration_seconds": 7.957753358,
+        "ram_usage_start_mb": 14271.50390625,
+        "ram_usage_end_mb": 14488.390625,
+        "ram_usage_delta_mb": 216.88671875,
+        "num_texts_processed": 52526,
+        "total_chars_processed": 4401278,
+        "avg_chars_per_text": 83.79236949320337,
+        "seconds_per_text": 0.0001515012252598713,
+        "seconds_per_1k_chars": 0.0018080551507993815
+    }
+]

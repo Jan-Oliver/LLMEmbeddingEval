@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "intfloat/multilingual-e5-base",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 135,
+    "val_loss": 0.7579879456706968,
+    "val_acc": 0.8306916426512968,
+    "learning_rate": 2.5e-05
+}

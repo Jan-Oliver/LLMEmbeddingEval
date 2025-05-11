@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "03d59aae-e84c-4677-978f-67b35eb40f79",
+        "context_name": "nomic-embed-text-v2-moe",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-11T09:21:19.637232Z",
+        "timestamp_end_iso": "2025-05-11T09:21:25.044355Z",
+        "duration_seconds": 5.407071674,
+        "ram_usage_start_mb": 5605.79296875,
+        "ram_usage_end_mb": 15694.12890625,
+        "ram_usage_delta_mb": 10088.3359375
+    },
+    {
+        "event_id": "329e59e0-0195-4d0c-83ba-6816a1860f5b",
+        "context_name": "nomic-embed-text-v2-moe",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-11T09:21:25.049314Z",
+        "timestamp_end_iso": "2025-05-11T09:21:44.557796Z",
+        "duration_seconds": 19.50837846,
+        "ram_usage_start_mb": 15694.12890625,
+        "ram_usage_end_mb": 16111.9609375,
+        "ram_usage_delta_mb": 417.83203125,
+        "num_texts_processed": 6473,
+        "total_chars_processed": 10594459,
+        "avg_chars_per_text": 1636.7154333384829,
+        "seconds_per_text": 0.00301380788815078,
+        "seconds_per_1k_chars": 0.001841375615309852
+    },
+    {
+        "event_id": "1032eed8-f03f-4c65-ab24-e1ba3aef18fd",
+        "context_name": "nomic-embed-text-v2-moe",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-11T09:21:44.558271Z",
+        "timestamp_end_iso": "2025-05-11T09:21:52.675238Z",
+        "duration_seconds": 8.116882846,
+        "ram_usage_start_mb": 16111.9609375,
+        "ram_usage_end_mb": 16118.58984375,
+        "ram_usage_delta_mb": 6.62890625,
+        "num_texts_processed": 2775,
+        "total_chars_processed": 4754843,
+        "avg_chars_per_text": 1713.456936936937,
+        "seconds_per_text": 0.0029250028273873872,
+        "seconds_per_1k_chars": 0.0017070769415520133
+    },
+    {
+        "event_id": "9ff679d1-5981-4e78-bfed-32d534c436c4",
+        "context_name": "nomic-embed-text-v2-moe",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-11T09:22:09.248504Z",
+        "timestamp_end_iso": "2025-05-11T09:23:16.689792Z",
+        "duration_seconds": 67.44076023,
+        "ram_usage_start_mb": 16278.07421875,
+        "ram_usage_end_mb": 16945.9296875,
+        "ram_usage_delta_mb": 667.85546875,
+        "num_texts_processed": 105049,
+        "total_chars_processed": 9569203,
+        "avg_chars_per_text": 91.09275671353369,
+        "seconds_per_text": 0.0006419933576711819,
+        "seconds_per_1k_chars": 0.007047688321587493
+    }
+]

@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+    "embedding_dimension": 768,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 105,
+    "val_loss": 0.3527944431245864,
+    "val_acc": 0.8778378378378379,
+    "learning_rate": 2.5e-05
+}

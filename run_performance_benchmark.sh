@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Common Benchmark Parameters
-NUM_SENTENCES=5_000 # Adjusted for potentially faster runs during testing, increase for full benchmarks
+NUM_SENTENCES=15_000 # Adjusted for potentially faster runs during testing, increase for full benchmarks
 # NUM_SENTENCES=10000 # Smaller for quick tests
 BATCH_SIZE=64
 TARGET_DEVICE="cpu" # or "cpu" or "mps"

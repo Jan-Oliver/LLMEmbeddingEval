@@ -1,0 +1,49 @@
+{
+    "model_name": "intfloat/multilingual-e5-small",
+    "timestamp": "2025-05-11 12:38:26",
+    "device": "cuda",
+    "test_sentence_used": "This benchmark evaluates the inference speed and memory footprint of various sentence embedding models when processing a large volume of repeated textual data on different hardware configurations.",
+    "prefix_function_name": "query",
+    "normalize_embeddings_in_encode_call": true,
+    "num_sentences_processed": 1000000,
+    "batch_size": 64,
+    "warmup_runs": 256,
+    "ram_psutil_before_load_mb": 468.5,
+    "ram_resource_maxrss_before_load_mb": 468.5,
+    "effective_device": "cuda",
+    "gpu_mem_before_load": {
+        "gpu_memory_allocated_mb": 0.0,
+        "gpu_memory_peak_allocated_mb": 0.0,
+        "gpu_memory_reserved_mb": 0.0,
+        "gpu_memory_peak_reserved_mb": 0.0
+    },
+    "model_load_time_s": 13.89,
+    "ram_psutil_after_load_mb": 859.35,
+    "model_ram_footprint_psutil_approx_mb": 390.85,
+    "ram_resource_maxrss_after_load_mb": 1307.97,
+    "gpu_mem_after_load": {
+        "gpu_memory_allocated_mb": 448.82,
+        "gpu_memory_peak_allocated_mb": 448.82,
+        "gpu_memory_reserved_mb": 462.0,
+        "gpu_memory_peak_reserved_mb": 462.0
+    },
+    "ram_psutil_after_warmup_mb": 1024.05,
+    "ram_resource_maxrss_after_warmup_mb": 1307.97,
+    "gpu_mem_after_warmup": {
+        "gpu_memory_allocated_mb": 456.95,
+        "gpu_memory_peak_allocated_mb": 504.94,
+        "gpu_memory_reserved_mb": 556.0,
+        "gpu_memory_peak_reserved_mb": 556.0
+    },
+    "output_embedding_dim": 384,
+    "inference_time_s": 123.98,
+    "ram_psutil_after_inference_mb": 4680.89,
+    "ram_resource_maxrss_after_inference_mb": 4909.5,
+    "gpu_mem_after_inference": {
+        "gpu_memory_allocated_mb": 456.95,
+        "gpu_memory_peak_allocated_mb": 505.01,
+        "gpu_memory_reserved_mb": 556.0,
+        "gpu_memory_peak_reserved_mb": 556.0
+    },
+    "sentences_per_second": 8065.82
+}

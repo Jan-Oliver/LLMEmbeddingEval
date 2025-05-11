@@ -8,3 +8,4 @@ python-dotenv
 pydantic
 seaborn
 einops # For running nomic-ai/nomic-embed-text-v2-moe
+tabulate # To convert pandas dataframe to markdown table

@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "6fe750ee-d02a-415d-becd-5af4735b0da6",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "model_load",
+        "timestamp_start_iso": "2025-05-10T15:12:23.514681Z",
+        "timestamp_end_iso": "2025-05-10T15:12:26.057447Z",
+        "duration_seconds": 2.542742284,
+        "ram_usage_start_mb": 5603.3359375,
+        "ram_usage_end_mb": 13818.06640625,
+        "ram_usage_delta_mb": 8214.73046875
+    },
+    {
+        "event_id": "39b24fb8-e53e-4507-9a18-658bec56326d",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:12:26.059721Z",
+        "timestamp_end_iso": "2025-05-10T15:12:27.563553Z",
+        "duration_seconds": 1.503805225,
+        "ram_usage_start_mb": 13818.06640625,
+        "ram_usage_end_mb": 13831.69140625,
+        "ram_usage_delta_mb": 13.625,
+        "num_texts_processed": 3236,
+        "total_chars_processed": 4780767,
+        "avg_chars_per_text": 1477.369283065513,
+        "seconds_per_text": 0.0004647111325710754,
+        "seconds_per_1k_chars": 0.00031455313028223294
+    },
+    {
+        "event_id": "9f8be677-5b24-4912-af1e-b7bf59b8f955",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:12:27.563847Z",
+        "timestamp_end_iso": "2025-05-10T15:12:28.208580Z",
+        "duration_seconds": 0.644705958,
+        "ram_usage_start_mb": 13831.69140625,
+        "ram_usage_end_mb": 13834.40234375,
+        "ram_usage_delta_mb": 2.7109375,
+        "num_texts_processed": 1388,
+        "total_chars_processed": 2182516,
+        "avg_chars_per_text": 1572.4178674351585,
+        "seconds_per_text": 0.00046448556051873196,
+        "seconds_per_1k_chars": 0.00029539575334155624
+    },
+    {
+        "event_id": "93ded665-5c02-4b10-8895-6e4d72840576",
+        "context_name": "distiluse-base-multilingual-cased-v1",
+        "event_type": "inference_run",
+        "timestamp_start_iso": "2025-05-10T15:12:37.370660Z",
+        "timestamp_end_iso": "2025-05-10T15:12:46.349375Z",
+        "duration_seconds": 8.978604615,
+        "ram_usage_start_mb": 14280.125,
+        "ram_usage_end_mb": 14562.45703125,
+        "ram_usage_delta_mb": 282.33203125,
+        "num_texts_processed": 52523,
+        "total_chars_processed": 5167925,
+        "avg_chars_per_text": 98.39356091617006,
+        "seconds_per_text": 0.0001709461495916075,
+        "seconds_per_1k_chars": 0.0017373713076331409
+    }
+]

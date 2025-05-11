@@ -1,0 +1,49 @@
+{
+    "model_name": "intfloat/multilingual-e5-large-instruct",
+    "timestamp": "2025-05-11 12:09:01",
+    "device": "cuda",
+    "test_sentence_used": "This benchmark evaluates the inference speed and memory footprint of various sentence embedding models when processing a large volume of repeated textual data on different hardware configurations.",
+    "prefix_function_name": "e5_large_instruct",
+    "normalize_embeddings_in_encode_call": true,
+    "num_sentences_processed": 1000000,
+    "batch_size": 64,
+    "warmup_runs": 256,
+    "ram_psutil_before_load_mb": 470.22,
+    "ram_resource_maxrss_before_load_mb": 470.22,
+    "effective_device": "cuda",
+    "gpu_mem_before_load": {
+        "gpu_memory_allocated_mb": 0.0,
+        "gpu_memory_peak_allocated_mb": 0.0,
+        "gpu_memory_reserved_mb": 0.0,
+        "gpu_memory_peak_reserved_mb": 0.0
+    },
+    "model_load_time_s": 14.58,
+    "ram_psutil_after_load_mb": 2020.29,
+    "model_ram_footprint_psutil_approx_mb": 1550.07,
+    "ram_resource_maxrss_after_load_mb": 3707.9,
+    "gpu_mem_after_load": {
+        "gpu_memory_allocated_mb": 2135.82,
+        "gpu_memory_peak_allocated_mb": 2135.82,
+        "gpu_memory_reserved_mb": 2148.0,
+        "gpu_memory_peak_reserved_mb": 2148.0
+    },
+    "ram_psutil_after_warmup_mb": 2083.66,
+    "ram_resource_maxrss_after_warmup_mb": 3707.9,
+    "gpu_mem_after_warmup": {
+        "gpu_memory_allocated_mb": 2143.95,
+        "gpu_memory_peak_allocated_mb": 2380.37,
+        "gpu_memory_reserved_mb": 2494.0,
+        "gpu_memory_peak_reserved_mb": 2494.0
+    },
+    "output_embedding_dim": 1024,
+    "inference_time_s": 1454.52,
+    "ram_psutil_after_inference_mb": 9648.66,
+    "ram_resource_maxrss_after_inference_mb": 9882.64,
+    "gpu_mem_after_inference": {
+        "gpu_memory_allocated_mb": 2143.95,
+        "gpu_memory_peak_allocated_mb": 2380.37,
+        "gpu_memory_reserved_mb": 2494.0,
+        "gpu_memory_peak_reserved_mb": 2494.0
+    },
+    "sentences_per_second": 687.51
+}

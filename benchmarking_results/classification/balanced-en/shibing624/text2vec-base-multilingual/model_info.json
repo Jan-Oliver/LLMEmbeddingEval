@@ -1,0 +1,10 @@
+{
+    "embedding_model_name": "shibing624/text2vec-base-multilingual",
+    "embedding_dimension": 384,
+    "classifier_class": "SimpleEmotionClassifier",
+    "num_classes": 5,
+    "epoch": 76,
+    "val_loss": 0.8356002818267009,
+    "val_acc": 0.7997118155619597,
+    "learning_rate": 5e-05
+}

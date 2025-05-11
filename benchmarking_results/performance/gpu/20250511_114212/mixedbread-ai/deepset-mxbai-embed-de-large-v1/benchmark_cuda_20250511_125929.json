@@ -1,0 +1,49 @@
+{
+    "model_name": "mixedbread-ai/deepset-mxbai-embed-de-large-v1",
+    "timestamp": "2025-05-11 12:46:40",
+    "device": "cuda",
+    "test_sentence_used": "This benchmark evaluates the inference speed and memory footprint of various sentence embedding models when processing a large volume of repeated textual data on different hardware configurations.",
+    "prefix_function_name": "none",
+    "normalize_embeddings_in_encode_call": false,
+    "num_sentences_processed": 1000000,
+    "batch_size": 64,
+    "warmup_runs": 256,
+    "ram_psutil_before_load_mb": 470.12,
+    "ram_resource_maxrss_before_load_mb": 470.12,
+    "effective_device": "cuda",
+    "gpu_mem_before_load": {
+        "gpu_memory_allocated_mb": 0.0,
+        "gpu_memory_peak_allocated_mb": 0.0,
+        "gpu_memory_reserved_mb": 0.0,
+        "gpu_memory_peak_reserved_mb": 0.0
+    },
+    "model_load_time_s": 11.5,
+    "ram_psutil_after_load_mb": 2210.17,
+    "model_ram_footprint_psutil_approx_mb": 1740.05,
+    "ram_resource_maxrss_after_load_mb": 3477.67,
+    "gpu_mem_after_load": {
+        "gpu_memory_allocated_mb": 1858.02,
+        "gpu_memory_peak_allocated_mb": 1858.02,
+        "gpu_memory_reserved_mb": 1870.0,
+        "gpu_memory_peak_reserved_mb": 1870.0
+    },
+    "ram_psutil_after_warmup_mb": 2306.31,
+    "ram_resource_maxrss_after_warmup_mb": 3477.67,
+    "gpu_mem_after_warmup": {
+        "gpu_memory_allocated_mb": 1866.15,
+        "gpu_memory_peak_allocated_mb": 1986.48,
+        "gpu_memory_reserved_mb": 2032.0,
+        "gpu_memory_peak_reserved_mb": 2032.0
+    },
+    "output_embedding_dim": 1024,
+    "inference_time_s": 757.89,
+    "ram_psutil_after_inference_mb": 9828.58,
+    "ram_resource_maxrss_after_inference_mb": 10055.63,
+    "gpu_mem_after_inference": {
+        "gpu_memory_allocated_mb": 1866.15,
+        "gpu_memory_peak_allocated_mb": 1986.48,
+        "gpu_memory_reserved_mb": 2032.0,
+        "gpu_memory_peak_reserved_mb": 2032.0
+    },
+    "sentences_per_second": 1319.45
+}
